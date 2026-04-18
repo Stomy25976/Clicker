@@ -1,4 +1,4 @@
-const API_BASE = '/api/';
+const API_BASE = '/api/shop';
 
 // Вспомогательные функции
 function setTokens(access, refresh) {

@@ -6,6 +6,7 @@ from django.dispatch import receiver
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     clicks = models.IntegerField(default=0)
+    click_power = models.IntegerField(default=1)
 
     def __str__(self):
         return f"{self.user.username} - {self.clicks} clicks"

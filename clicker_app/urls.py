@@ -8,7 +8,7 @@ urlpatterns = [
     path('register/', RegisterView.as_view(), name='register'),
     path('login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('profile/', ProfileView.as_view(), name='profile'),
-    path('hello/', views.my_api_page, name='api_hello'),
+    path('shop/', views.my_api_page, name='api_shop'),
 ]
 
 

@@ -22,7 +22,7 @@ class ProfileView(APIView):
 
     def post(self, request):
         profile = request.user.profile
-        profile.clicks += 1
+        profile.clicks += profile.click_power
         profile.save()
         return Response({'clicks': profile.clicks})
 
@@ -34,3 +34,13 @@ def my_api_page(request):
         'status': 'success'
     }
     return Response(data)
+
+@api_view(['POST'])
+def buy_upgrade(request):
+    profile = request.user.profile
+    if profile.clicks >= 100: # Цена улучшения
+        profile.clicks -= 100
+        profile.click_power = 2 # Теперь клик дает 2
+        profile.save()
+        return Response({'success': True})
+    return Response({'error': 'Недостаточно кликов'}, status=400)

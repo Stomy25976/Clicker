@@ -100,14 +100,8 @@ document.getElementById('logout-btn').addEventListener('click', () => {
 
 // Выход2
 document.getElementById('logout2-btn').addEventListener('click', () => {
-    clearTokens();
-    showGame();
-});
 
-// SHOP
-document.getElementById('shop-btn').addEventListener('click', () => {
-    clearTokens();
-    showShop();
+    showGame();
 });
 
 // Переключение интерфейса
@@ -155,23 +149,40 @@ checkAuth();
 
 
 
-// Проверка токена при загрузке
-async function checkShop() {
-    const token = getAccessToken();
-    if (token) {
-        const res = await apiRequest('profile/', 'GET');
-        if (res.ok) {
-            const data = await res.json();
-            document.getElementById('username').innerText = data.username;
-            document.getElementById('click-count').innerText = data.clicks;
-            showGame();
-        } else {
-            clearTokens();
-            showShop();
-        }
-    } else {
-        showShop();
-    }
-}
+//// Проверка токена при загрузке
+//async function checkShop() {
+//    const token = getAccessToken();
+//    if (token) {
+//        const res = await apiRequest('profile/', 'GET');
+//        if (res.ok) {
+//            const data = await res.json();
+//            document.getElementById('username').innerText = data.username;
+//            document.getElementById('click-count').innerText = data.clicks;
+//            showGame();
+//        } else {
+//            clearTokens();
+//            showShop();
+//        }
+//    } else {
+//        showShop();
+//    }
+//}
+//
+//checkShop();
 
-checkShop();
+// SHOP
+document.getElementById('shop-btn').addEventListener('click', () => {
+    showShop();
+});
+
+//Апгрейд
+document.getElementById('moreclicks-btn').addEventListener('click', async () => {
+    const res = await apiRequest('moreclicks-btn/', 'POST');
+    if (res.ok) {
+        alert('Улучшение куплено!');
+    } else {
+        alert('Недостаточно кликов!');
+    }
+});
+
+checkAuth();
